@@ -1,5 +1,5 @@
-import  {itemRouter}  from "./routes/itemsRouter.js";
-// import { commentsRouter } from "./routes/commentRouter.js";
+
+import  {itemRouter} from "./routes/itemsRouter.js";
 import express from 'express';
 import { MongoClient } from 'mongodb';
 import dotenv from "dotenv";
@@ -33,6 +33,7 @@ async function createConnection() {
 export const client = await createConnection();
 
 app.use("/latestcollection", itemRouter)
+
 
 
 
@@ -194,3 +195,4 @@ app.put('/changePassword', async function (request, response) {
     response.send({ message: "Unexpected error in password updation" });
   }
 })
+

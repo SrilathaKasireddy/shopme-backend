@@ -15,7 +15,8 @@ router.get('/', async function
     if(request.query.rating){
       request.query.rating = +request.query.rating;
     }
-    const items= await getAllItems(request);
+    const items= await 
+getAllItems(request);
     response.send(items);
     })
   
@@ -46,6 +47,16 @@ router.get('/', async function
   
   
   router.post('/',async function (req, res) {
+    let products = [], id = null;
+  let cart = JSON.parse(req.body.cart);
+  if (!cart) return res.json(products)
+  for (var i = 0; i < data.products.length; i++) {
+    id = data.products[i].id.toString();
+    if (cart.hasOwnProperty(id)) {
+      data.products[i].qty = cart[id]
+      products.push(data.products[i]);
+    }
+  }
     const data=req.body;
     console.log(data)  
     const result=await createNewItems(data);

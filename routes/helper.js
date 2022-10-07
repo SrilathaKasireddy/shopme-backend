@@ -28,6 +28,11 @@ export async function getAllItems(request) {
         .collection("latestcloths")
         .find(request.query).toArray();
 }
+export async function getAllOrders(request) {
+    return await client.db("orders")
+        .collection("orders")
+        .find(request.query).toArray();
+}
 
 export async function getAllHomes(request) {
     return await client.db("users")
